@@ -27,6 +27,10 @@ public class Converter extends JFrame {
 	private double gbp = 21.59;
 	private double euro = 18.66;
 	private double cad = 12.65;
+	private double usdusd = .78;
+	private double gbpusd = 1.26;
+	private double eurousd= 1.09;
+	private double cadusd = .58;
 
 	/**
 	 * Launch the application.
@@ -87,8 +91,8 @@ public class Converter extends JFrame {
 				
 				double finalAmount = 0;
 				
-				DecimalFormat reset = new DecimalFormat("0.00");
-				
+				DecimalFormat reset = new DecimalFormat("0.000");
+				// M X N 
 				if (options.getSelectedIndex() == 0 && optionsTwo.getSelectedIndex() == 0) {
 					System.out.println(newAmount);
 					result.setText("$ " + newAmount + " MXN");
@@ -99,7 +103,68 @@ public class Converter extends JFrame {
 				}else if (options.getSelectedIndex() == 0 && optionsTwo.getSelectedIndex() == 2) {
 					finalAmount = (newAmount /gbp);
 					result.setText("$ " + reset.format(finalAmount) + " GBP");
-				} 
+				} else if (options.getSelectedIndex()== 0 && optionsTwo.getSelectedIndex()==3) {
+					finalAmount = (newAmount / euro);
+					result.setText("$ " + reset.format(finalAmount) + " Euros");
+				} else if (options.getSelectedIndex() == 0 && optionsTwo.getSelectedIndex()== 4) {
+					finalAmount = (newAmount / cad);
+					result.setText("$ " + reset.format(finalAmount) + " CAD");
+					
+					// U S D
+				}else if (options.getSelectedIndex()==1 && optionsTwo.getSelectedIndex()==0) {
+					finalAmount = (newAmount * usd);
+					result.setText("$ " + reset.format(finalAmount) + " MXN");
+				} else if(options.getSelectedIndex()==1 && optionsTwo.getSelectedIndex()==1) {
+					result.setText("$ " + reset.format(newAmount) + " USD");
+				}
+				else if (options.getSelectedIndex()== 1 && optionsTwo.getSelectedIndex()==2) {
+					finalAmount = (newAmount / gbpusd);
+					result.setText("$ " + reset.format(finalAmount) + " GBP");
+				}else if (options.getSelectedIndex() == 1 && optionsTwo.getSelectedIndex()==3){
+					finalAmount = (newAmount/ eurousd );
+					result.setText("$ " + reset.format(finalAmount) + " Euros");
+				} else if (options.getSelectedIndex()==1 && optionsTwo.getSelectedIndex() == 4) {
+					finalAmount = (newAmount / cadusd);
+					result.setText("$ " + reset.format(finalAmount) + " CAD");
+				
+					//GBP
+				}else if (options.getSelectedIndex() == 2 && optionsTwo.getSelectedIndex() == 0) {
+					finalAmount = (newAmount * gbp);
+					result.setText("$ " + reset.format(finalAmount) + "MXN");
+				}else if (options.getSelectedIndex() ==2 && optionsTwo.getSelectedIndex() == 1) {
+					finalAmount = (newAmount / usdusd);
+					result.setText("$ " + reset.format(finalAmount) + " USD");
+				}else if (options.getSelectedIndex() == 2 && optionsTwo.getSelectedIndex() == 2) {
+					System.out.println(newAmount);
+					result.setText("$ " + reset.format(newAmount) + " GBP");
+				}else if (options.getSelectedIndex() == 2 && optionsTwo.getSelectedIndex() == 3) {
+					finalAmount = (newAmount / eurousd);
+					result.setText("$ " + reset.format(finalAmount) + " Euros");
+				}else if (options.getSelectedIndex() == 2 && optionsTwo.getSelectedIndex() == 4) {
+					finalAmount = (newAmount / cadusd);
+					result.setText("$ " + reset.format(finalAmount) + " CAD");
+				
+				//E U R O
+				}else if (options.getSelectedIndex() == 3 && optionsTwo.getSelectedIndex() == 0) {
+					finalAmount = (newAmount * euro);
+					result.setText("$ " + reset.format(finalAmount) + " MXN");
+				}else if (options.getSelectedIndex() == 3 && optionsTwo.getSelectedIndex() ==1) {
+					finalAmount = (newAmount /usdusd);
+					result.setText("$ " + reset.format(finalAmount) + " USD");
+				}else if (options.getSelectedIndex() == 3 && optionsTwo.getSelectedIndex() == 2) {
+					finalAmount = (newAmount / gbpusd);
+					result.setText("$ " + reset.format(finalAmount) + " GBP");
+					//System.out.println(finalAmount);
+				}else if (options.getSelectedIndex() == 3 && optionsTwo.getSelectedIndex() == 3) {
+					result.setText("$ " + reset.format(newAmount) + " Euros");
+				}else if (options.getSelectedIndex() == 3 && optionsTwo.getSelectedIndex() == 4) {
+					finalAmount = (newAmount / cadusd);
+					result.setText("$ " + reset.format(finalAmount) + " CAD");
+				}
+				
+				//C A D
+				
+				
 			
 			}
 		});
