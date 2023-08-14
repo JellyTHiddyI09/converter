@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -31,6 +35,9 @@ public class Converter extends JFrame {
 	private double gbpusd = 1.26;
 	private double eurousd= 1.09;
 	private double cadusd = .58;
+	private JMenuBar menuBar;
+	private JMenu mnNewMenu;
+	private JMenuItem mntmNewMenuItem;
 
 	/**
 	 * Launch the application.
@@ -55,15 +62,36 @@ public class Converter extends JFrame {
 		setTitle("CURRENCY Converter");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 600);
+		
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		mnNewMenu = new JMenu("Night Mode");
+		mnNewMenu.setFont(new Font("Nirmala UI", Font.PLAIN, 12));
+		mnNewMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setBackground(Color.gray);
+			}
+		});
+		menuBar.add(mnNewMenu);
+		
+		mntmNewMenuItem = new JMenuItem("Gray");
+		mntmNewMenuItem.setFont(new Font("Nirmala UI", Font.PLAIN, 10));
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setBackground(Color.gray);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Currency Converter");
+		JLabel lblNewLabel = new JLabel("Please select your exchange currencies");
 		lblNewLabel.setFont(new Font("Bodoni MT Condensed", Font.BOLD, 22));
-		lblNewLabel.setBounds(36, 10, 159, 32);
+		lblNewLabel.setBounds(35, 23, 294, 32);
 		contentPane.add(lblNewLabel);
 		
 		options = new JComboBox();
@@ -83,6 +111,7 @@ public class Converter extends JFrame {
 		
 		
 		convertButton = new JButton("CONVERT");
+		convertButton.setFont(new Font("Nirmala UI", Font.BOLD, 10));
 		convertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String amountSelect = amountIng.getText();
@@ -94,11 +123,9 @@ public class Converter extends JFrame {
 				DecimalFormat reset = new DecimalFormat("0.000");
 				// M X N 
 				if (options.getSelectedIndex() == 0 && optionsTwo.getSelectedIndex() == 0) {
-					System.out.println(newAmount);
 					result.setText("$ " + newAmount + " MXN");
 				}else if(options.getSelectedIndex() == 0 && optionsTwo.getSelectedIndex() == 1){
 					finalAmount = (newAmount / usd);
-					System.out.println(finalAmount);
 					result.setText("$ " + reset.format(finalAmount) + " USD");
 				}else if (options.getSelectedIndex() == 0 && optionsTwo.getSelectedIndex() == 2) {
 					finalAmount = (newAmount /gbp);
@@ -154,7 +181,6 @@ public class Converter extends JFrame {
 				}else if (options.getSelectedIndex() == 3 && optionsTwo.getSelectedIndex() == 2) {
 					finalAmount = (newAmount / gbpusd);
 					result.setText("$ " + reset.format(finalAmount) + " GBP");
-					//System.out.println(finalAmount);
 				}else if (options.getSelectedIndex() == 3 && optionsTwo.getSelectedIndex() == 3) {
 					result.setText("$ " + reset.format(newAmount) + " Euros");
 				}else if (options.getSelectedIndex() == 3 && optionsTwo.getSelectedIndex() == 4) {
@@ -163,6 +189,21 @@ public class Converter extends JFrame {
 				}
 				
 				//C A D
+				else if (options.getSelectedIndex() == 4 && optionsTwo.getSelectedIndex() == 0) {
+					finalAmount = (newAmount * cad);
+					result.setText("$ " + reset.format(finalAmount) + " MXN");
+				}else if (options.getSelectedIndex() == 4 && optionsTwo.getSelectedIndex() == 1) {
+					finalAmount = (newAmount / usdusd);
+					result.setText("$ " + reset.format(finalAmount) + " USD");
+				}else if (options.getSelectedIndex() == 4 && optionsTwo.getSelectedIndex() == 2) {
+					finalAmount = (newAmount / gbpusd);
+					result.setText("$ " + reset.format(finalAmount) + " GBP");
+				}else if (options.getSelectedIndex() == 4 && optionsTwo.getSelectedIndex() == 3) {
+					finalAmount = (newAmount / eurousd);
+					result.setText("$ " + reset.format(finalAmount) + " Euros");
+				}else if (options.getSelectedIndex() == 4 && optionsTwo.getSelectedIndex() == 4) {
+					result.setText("$ " + reset.format(newAmount) + " CAD");
+				}
 				
 				
 			
@@ -172,17 +213,18 @@ public class Converter extends JFrame {
 		contentPane.add(convertButton);
 		
 		exitButton = new JButton("exit");
+		exitButton.setFont(new Font("Nirmala UI", Font.PLAIN, 10));
 		exitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		exitButton.setBounds(363, 532, 63, 21);
+		exitButton.setBounds(363, 510, 63, 21);
 		contentPane.add(exitButton);
 		
 		result = new JLabel("");
 		result.setFont(new Font("Book Antiqua", Font.PLAIN, 23));
-		result.setBounds(153, 436, 167, 32);
+		result.setBounds(142, 436, 241, 32);
 		contentPane.add(result);
 		
 		amountIng = new JTextField();
