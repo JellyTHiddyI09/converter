@@ -83,6 +83,15 @@ public class Converter extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("White");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setBackground(Color.white);
+			}
+		});
+		mntmNewMenuItem_1.setFont(new Font("Nirmala UI", Font.PLAIN, 10));
+		mnNewMenu.add(mntmNewMenuItem_1);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -162,7 +171,6 @@ public class Converter extends JFrame {
 					finalAmount = (newAmount / usdusd);
 					result.setText("$ " + reset.format(finalAmount) + " USD");
 				}else if (options.getSelectedIndex() == 2 && optionsTwo.getSelectedIndex() == 2) {
-					System.out.println(newAmount);
 					result.setText("$ " + reset.format(newAmount) + " GBP");
 				}else if (options.getSelectedIndex() == 2 && optionsTwo.getSelectedIndex() == 3) {
 					finalAmount = (newAmount / eurousd);
